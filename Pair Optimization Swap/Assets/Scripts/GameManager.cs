@@ -6,8 +6,13 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public Text scoreText;
+    public GameObject gameOverText;
+
+    public float asteroidSpeedMultiplier = 1f;
     private int score = 0;
     private bool gameEnded = false;
+
+    private int nextSpeedThreshold = 50;
 
     private void Awake()
     {
@@ -21,6 +26,14 @@ public class GameManager : MonoBehaviour
 
         score += amount;
         UpdateScoreUI();
+
+        // Increase asteroid speed at each 50-point threshold
+        if (score >= nextSpeedThreshold)
+        {
+            asteroidSpeedMultiplier += 0.25f; 
+            nextSpeedThreshold += 50;
+            Debug.Log("Asteroid speed increased! Multiplier: " + asteroidSpeedMultiplier);
+        }
     }
 
     private void UpdateScoreUI()
@@ -46,10 +59,10 @@ public class GameManager : MonoBehaviour
 
         foreach (GameObject obj in allObjects)
         {
-            if (obj == this.gameObject) continue; 
-            if (obj.CompareTag("Background")) continue; 
+            if (obj == this.gameObject) continue;
+            if (obj.CompareTag("Background")) continue;
             if (obj.CompareTag("UI")) continue;
-            if(obj.CompareTag("MainCamera")) continue;
+            if (obj.CompareTag("MainCamera")) continue;
 
             Destroy(obj);
         }
@@ -62,6 +75,11 @@ public class GameManager : MonoBehaviour
         if (scoreText != null)
         {
             scoreText.text = "Final Score: " + score;
+        }
+
+        if (gameOverText != null)
+        {
+            gameOverText.SetActive(true);
         }
     }
 }

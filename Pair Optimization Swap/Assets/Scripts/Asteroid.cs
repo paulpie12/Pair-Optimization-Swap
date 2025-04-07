@@ -31,9 +31,10 @@ public class Asteroid : MonoBehaviour
 
     public void Trajectory(Vector2 direction)
     {
-        RB.AddForce(direction * this.speed);
+        float finalSpeed = speed * GameManager.Instance.asteroidSpeedMultiplier;
+        RB.AddForce(direction * finalSpeed);
 
-        Destroy(this.gameObject, this.lifespan);
+        Destroy(gameObject, lifespan);
     }
 
 }
