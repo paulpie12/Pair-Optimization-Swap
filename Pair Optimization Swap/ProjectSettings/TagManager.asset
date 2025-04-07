@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Astroid
+  - Background
+  - UI
   layers:
   - Default
   - TransparentFX

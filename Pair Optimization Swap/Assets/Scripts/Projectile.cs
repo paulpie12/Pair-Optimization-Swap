@@ -4,6 +4,7 @@ public class Projectile : MonoBehaviour
 {
     public float speed = 10f;
     public float lifespan = 2f;
+    public ParticleSystem ps;
 
     private void Start()
     {
@@ -19,9 +20,15 @@ public class Projectile : MonoBehaviour
     {
         if (collision.CompareTag("Astroid"))
         {
-            Destroy(collision.gameObject); 
-            GameManager.Instance.AddScore(10); 
-            Destroy(gameObject); 
+            GameManager.Instance.AddScore(10);
+            Destroy(collision.gameObject);
+
+            ps.transform.parent = null;
+            ps.Play();
+
+            Destroy(ps.gameObject, ps.main.duration + ps.main.startLifetime.constantMax);
+
+            Destroy(gameObject);
         }
     }
 }
