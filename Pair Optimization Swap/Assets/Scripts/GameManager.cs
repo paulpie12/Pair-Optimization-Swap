@@ -1,21 +1,67 @@
-using System.Collections;
-using UnityEngine.UI;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class StartGame : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
 
+    public Text scoreText;
+    private int score = 0;
+    private bool gameEnded = false;
 
-    private void Start()
+    private void Awake()
     {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
 
-    void Update()
+    public void AddScore(int amount)
     {
-                if (Input.GetKeyDown(KeyCode.R))
-                {
-                    Application.LoadLevel(0);
-                }
+        if (gameEnded) return;
+
+        score += amount;
+        UpdateScoreUI();
+    }
+
+    private void UpdateScoreUI()
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = "Score: " + score;
+        }
+    }
+
+    public void PlayerHit()
+    {
+        if (gameEnded) return;
+
+        gameEnded = true;
+        ClearScene();
+        ShowFinalScore();
+    }
+
+    private void ClearScene()
+    {
+        GameObject[] allObjects = FindObjectsOfType<GameObject>();
+
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj == this.gameObject) continue; 
+            if (obj.CompareTag("Background")) continue; 
+            if (obj.CompareTag("UI")) continue;
+            if(obj.CompareTag("MainCamera")) continue;
+
+            Destroy(obj);
+        }
+    }
+
+    private void ShowFinalScore()
+    {
+        Debug.Log("Game Over! Final Score: " + score);
+
+        if (scoreText != null)
+        {
+            scoreText.text = "Final Score: " + score;
+        }
     }
 }

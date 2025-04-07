@@ -175,7 +175,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0b1832a83250c7e43b408baa43c7de53, type: 3}
   - {fileID: 21300000, guid: df1e7a58dbca53d45b198c17e9d0f260, type: 3}
   Size: 1
-  minsize: 0.5
-  maxsize: 1
-  speed: 8
+  minsize: 3
+  maxsize: 5
+  speed: 20
   lifespan: 30
