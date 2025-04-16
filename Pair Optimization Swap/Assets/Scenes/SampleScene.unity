@@ -5437,11 +5437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39b7572d6b2e054d9ec43efd63bc54d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trajectoryVariance: 15
   asteroidPrefab: {fileID: -2492151902543188121, guid: 5cbd112b6b08d34459d39d1e6075b5a6, type: 3}
-  Rate: 2
-  Amount: 1
-  Spawndistance: 15
 --- !u!4 &911707206
 Transform:
   m_ObjectHideFlags: 0
@@ -5643,12 +5639,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdeed9b2ca9729243b184a774b15ce04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardspeed: 3
-  turnspeed: 1
   projectilePrefab: {fileID: 502219434883473353, guid: 82d73a6b51c44cc4a8abe75044fb4b35, type: 3}
   firePoint: {fileID: 2054071399}
-  fireCooldown: 0.5
   ps: {fileID: 408964633}
+  lose: 0
 --- !u!61 &1522810438
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5820,7 +5814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1993411633}
-  gameOverText: {fileID: 0}
+  gameOverText: {fileID: 1522810436}
   asteroidSpeedMultiplier: 1
 --- !u!4 &1740228133
 Transform:

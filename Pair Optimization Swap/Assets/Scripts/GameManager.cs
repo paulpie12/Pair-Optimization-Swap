@@ -5,8 +5,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public Text scoreText;
-    public GameObject gameOverText;
+    [SerializeField] private Text scoreText;
+    [SerializeField] private GameObject gameOverText;
 
     public float asteroidSpeedMultiplier = 1f;
     private int score = 0;
@@ -26,11 +26,14 @@ public class GameManager : MonoBehaviour
 
         score += amount;
         UpdateScoreUI();
+    }
 
+    public void IncreaseAsteroidSpeed()
+    {
         // Increase asteroid speed at each 50-point threshold
         if (score >= nextSpeedThreshold)
         {
-            asteroidSpeedMultiplier += 0.25f; 
+            asteroidSpeedMultiplier += 0.25f;
             nextSpeedThreshold += 50;
             Debug.Log("Asteroid speed increased! Multiplier: " + asteroidSpeedMultiplier);
         }

@@ -5,17 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class player : MonoBehaviour
 {
-    public float forwardspeed = 1.0f;
-    public float turnspeed = 1.0f;
-    public GameObject projectilePrefab;
-    public Transform firePoint;
-    public float fireCooldown = 0.5f;
+    private float forwardspeed = 1.0f;
+    private float turnspeed = 1.0f;
+    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private Transform firePoint;
+    private float fireCooldown = 0.5f;
     [SerializeField] private ParticleSystem ps;
 
     private Rigidbody2D rigidbody;
     private bool Forward;
     private float turnDirection;
-    private bool lose = false;
+    public bool lose = false;
     private float fireTimer;
     private Renderer Ren;
 

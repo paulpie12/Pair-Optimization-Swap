@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float speed = 10f;
-    public float lifespan = 2f;
-    public ParticleSystem ps;
+    private float speed = 10f;
+    private float lifespan = 2f;
+    [SerializeField] private ParticleSystem ps;
 
     private void Start()
     {
@@ -21,6 +21,7 @@ public class Projectile : MonoBehaviour
         if (collision.CompareTag("Astroid"))
         {
             GameManager.Instance.AddScore(10);
+            GameManager.Instance.IncreaseAsteroidSpeed();
             Destroy(collision.gameObject);
 
             ps.transform.parent = null;
